@@ -23,7 +23,7 @@
 
 
 
-# Clean up workspace
+# Cleaning up workspace
 rm(list=ls())
 
 # 1. Merge the training and the test sets to create one data set.
@@ -38,13 +38,13 @@ subjectTrain = read.table('./train/subject_train.txt',header=FALSE); #imports su
 xTrain       = read.table('./train/x_train.txt',header=FALSE); #imports x_train.txt
 yTrain       = read.table('./train/y_train.txt',header=FALSE); #imports y_train.txt
 
-# Assigin column names to the data imported above
+# Assigning column names to the data imported above
 colnames(activityType)  = c('activityId','activityType');
 colnames(subjectTrain)  = "subjectId";
 colnames(xTrain)        = features[,2]; 
 colnames(yTrain)        = "activityId";
 
-# cCreate the final training set by merging yTrain, subjectTrain, and xTrain
+# Create the final training set by merging yTrain, subjectTrain, and xTrain
 trainingData = cbind(yTrain,subjectTrain,xTrain);
 
 # Read in the test data
@@ -71,7 +71,7 @@ colNames  = colnames(finalData);
 
 # 2. Extract only the measurements on the mean and standard deviation for each measurement. 
 
-# Create a logicalVector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for others
+# Create a logicalVector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for the rest of them.
 logicalVector = (grepl("activity..",colNames) | grepl("subject..",colNames) | grepl("-mean..",colNames) & !grepl("-meanFreq..",colNames) & !grepl("mean..-",colNames) | grepl("-std..",colNames) & !grepl("-std()..-",colNames));
 
 # Subset finalData table based on the logicalVector to keep only desired columns
